@@ -11,8 +11,11 @@ input = arg.map {|i| i.to_s}.join(" ")
 if command == 'add'
 	task = Task.create(action: input, status: 'pending')
 elsif command == 'list'
+	i = 1
 	Task.find_each do |t|
-	puts t.id.to_s + " " + t.action + " " + "status:" + t.status
+	puts i.to_s + " " + t.action + " " + "status:" + t.status
+	t.update(id: i)
+	i += 1 
 	end
 elsif command == 'delete'
   	task = Task.find_by(id: input)
