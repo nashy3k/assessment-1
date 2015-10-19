@@ -20,6 +20,11 @@ elsif command == 'list'
 elsif command == 'delete'
   	task = Task.find_by(id: input)
   	task.destroy
+  	i = 1
+  	Task.find_each do |t|
+  	t.update(id: i)
+  	i += 1
+  	end
 elsif command == 'complete'
   	task = Task.find_by(id: input)
   	task.update(status: 'completed')
